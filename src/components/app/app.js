@@ -38,10 +38,10 @@ class WhoAmI extends Component {
 function App() {
 
   const data = [
-    {name: 'Johan Rodert', salary: 800, increase: true, id: 1},
-    {name: 'Sebastian Patric', salary: 3000, increase: false, id: 2},
-    {name: 'Valentin Zoltons', salary: 6700, increase: false, id: 3},
-    {name: 'Zor As', salary: 900, increase: false, id: 4},
+    {name: 'Johan Rodert', salary: 800, increase: true, id: 1, like: false},
+    {name: 'Sebastian Patric', salary: 3000, increase: false, id: 2, like: false},
+    {name: 'Valentin Zoltons', salary: 6700, increase: false, id: 3, like: false},
+    {name: 'Zor As', salary: 900, increase: false, id: 4, like: false},
   ];
 
   return (
