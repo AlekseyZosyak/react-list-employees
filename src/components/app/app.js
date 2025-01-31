@@ -12,7 +12,7 @@ class WhoAmI extends Component {
         super(props);
         this.state = {
             years: 27,
-            text: '+'  
+            text: '+'
         }
     }
     start = () => {
@@ -22,7 +22,7 @@ class WhoAmI extends Component {
     }
 
     render() {
-        const {name} = this.props;
+        const { name } = this.props;
         return (
             <div>
                 <h1>My name is {name}, age - {this.state.years}</h1>
@@ -35,33 +35,50 @@ class WhoAmI extends Component {
 
 
 
-function App() {
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [
+                { name: 'Johan Rodert', salary: 800, increase: true, id: 1, like: false },
+                { name: 'Sebastian Patric', salary: 3000, increase: false, id: 2, like: false },
+                { name: 'Valentin Zoltons', salary: 6700, increase: false, id: 3, like: false },
+                { name: 'Zor As', salary: 900, increase: false, id: 4, like: false },
+            ]
+        };
+    }
 
-  const data = [
-    {name: 'Johan Rodert', salary: 800, increase: true, id: 1, like: false},
-    {name: 'Sebastian Patric', salary: 3000, increase: false, id: 2, like: false},
-    {name: 'Valentin Zoltons', salary: 6700, increase: false, id: 3, like: false},
-    {name: 'Zor As', salary: 900, increase: false, id: 4, like: false},
-  ];
+    deleteItem = (id) => {
+        this.setState(({data}) => {
+            const index = data.findIndex(elem => elem.id === id);
+            console.log(index)
+        })
+    }
 
-  return (
-    <div className="app">
-        <AppInfo />
+    render() {
+        const { data } = this.state;
 
-        <div className="search-panel">
-            <SearchPanel/>
-            <AppFilter/>
-        </div>
-       
-        <EmployeesList data={data}/>
-        <EmployeesAddForm/>
+        return (
+            <div className="app">
+                <AppInfo />
 
-        <div>
-            <WhoAmI name='Jos'/>
-            <WhoAmI name='Loas'/>
-        </div>
-    </div>
-  );
+                <div className="search-panel">
+                    <SearchPanel />
+                    <AppFilter />
+                </div>
+
+                <EmployeesList
+                    data={data}
+                    onDelete={this.deleteItem} />
+                <EmployeesAddForm />
+
+                <div>
+                    <WhoAmI name='Jos' />
+                    <WhoAmI name='Loas' />
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
